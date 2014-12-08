@@ -42,6 +42,7 @@ class Memprof2
       raise ArgumentError, "`ignore` option must be a Regexp object" unless @ignore.is_a?(Regexp)
     end
     @out = opts[:out] || "/dev/stdout"
+    self
   end
 
   def collect_info
