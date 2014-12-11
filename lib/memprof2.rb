@@ -21,6 +21,11 @@ class Memprof2
     ensure
       ObjectSpace.trace_object_allocations_start
     end
+
+    def report!(opts = {})
+      report(opts)
+      ObjectSpace.trace_object_allocations_clear
+    end
   end
 
   def report(opts={})

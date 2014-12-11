@@ -38,4 +38,16 @@ class TestMemprof2 < Test::Unit::TestCase
     Memprof2.stop
     assert_match("test/test_memprof2.rb:36:String\n", File.read(opts[:out]))
   end
+
+  def test_report!
+    opts_bang = {out: "tmp/test_report_bang.out"}
+    opts = {out: "tmp/test_report.out"}
+    Memprof2.start
+    a = "abc"
+    Memprof2.report!(opts_bang) # clear
+    Memprof2.report(opts)
+    Memprof2.stop
+    assert_match("test/test_memprof2.rb:46:String\n", File.read(opts_bang[:out]))
+    assert_match("", File.read(opts[:out]))
+  end
 end
