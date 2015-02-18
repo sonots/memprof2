@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "memprof2"
-  spec.version       = "0.0.2"
+  spec.version       = "0.1.0"
   spec.authors       = ["Naotoshi Seo"]
   spec.email         = ["sonots@gmail.com"]
   spec.description   = %q{Ruby memory profiler for >= Ruby 2.1.0}
