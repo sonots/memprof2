@@ -58,7 +58,15 @@ class Memprof2
       next if (@trace  and @trace !~ file)
       next if (@ignore and @ignore =~ file)
       line = ObjectSpace.allocation_sourceline(o)
-      memsize = ObjectSpace.memsize_of(o) + @rvalue_size
+      if RUBY_VERSION >= "2.2.0"
+        # Ruby 2.2.0 takes into account sizeof(RVALUE)
+        # https://bugs.ruby-lang.org/issues/8984
+        memsize = ObjectSpace.memsize_of(o)
+      else
+        # Ruby < 2.2.0 does not have ways to get memsize correctly, but let me make a bid as much as possible
+        # https://twitter.com/sonots/status/544334978515869698
+        memsize = ObjectSpace.memsize_of(o) + @rvalue_size
+      end
       memsize = @rvalue_size if memsize > 100_000_000_000 # compensate for API bug
       klass = o.class.name rescue "BasicObject"
       location = "#{file}:#{line}:#{klass}"
