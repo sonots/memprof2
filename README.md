@@ -95,6 +95,10 @@ For the block of ruby code, print out file:line:class pairs for ruby objects cre
 
 See [CHANGELOG.md](CHANGELOG.md) for details.
 
+## See Also
+
+* [Ruby でラインメモリプロファイラ](http://qiita.com/sonots/items/c14b3e3ca8e6f7dfb651) (Japanese)
+
 ## Contributing
 
 1. Fork it
