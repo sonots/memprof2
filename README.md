@@ -9,7 +9,7 @@ Memprof2 is a Ruby memory profiler for >= Ruby 2.1.0.
 Execute
 
 ```
-$ gem install memprof
+$ gem install memprof2
 ```
 
 or ddd the following to your `Gemfile`:
