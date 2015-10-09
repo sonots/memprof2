@@ -31,7 +31,7 @@ class Memprof2
   def report(opts={})
     configure(opts)
     results = collect_info
-    File.open(@out, 'w') do |io|
+    File.open(@out, 'a') do |io|
       results.each do |location, memsize|
         io.puts "#{memsize} #{location}"
       end
