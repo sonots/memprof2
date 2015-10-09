@@ -68,6 +68,16 @@ After `GC.start`, only the very last instance of `"abc"` will still exist:
 
 *Note*: Use `Memprof2.report!` to clear out tracking data after printing out results.
 
+Use `trace` and `ignore` options to restrict files to report. You can write patterns by regular expressions:
+
+```
+Memprof2.start
+10.times{ $last_str = "abc" }
+GC.start
+Memprof2.report!(trace: /file\.rb/, ignore: /ignore_me/, out: "/path/to/file")
+Memprof2.stop
+```
+
 ## Memprof2.run
 
 Simple wrapper for `Memprof2.start/stop` that will start/stop memprof around a given block of ruby code.
