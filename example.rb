@@ -27,3 +27,10 @@ Memprof2.run do
   100.times{ Module.new }
   Memprof2.report(out: "example.out")
 end
+
+############
+Memprof2.run_with_report(out: "example.out") do
+  100.times{ "abc" }
+  100.times{ 1.23 + 1 }
+  100.times{ Module.new }
+end

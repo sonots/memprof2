@@ -80,7 +80,7 @@ Memprof2.stop
 
 ## Memprof2.run
 
-Simple wrapper for `Memprof2.start/stop` that will start/stop memprof around a given block of ruby code.
+A shorthand for `Memprof2.start/stop` that will start/stop memprof around a given block of ruby code.
 
 ```ruby
 Memprof2.run do
@@ -100,6 +100,20 @@ For the block of ruby code, print out file:line:class pairs for ruby objects cre
 ```
 
 *Note*: You can call GC.start at the end of the block to print out only objects that are 'leaking' (i.e. objects that still have inbound references).
+
+## Memprof2.run_with_report
+
+A shorthand for `Memprof2.start/report/stop`.
+
+Following codes work exactly same with the above example.
+
+```ruby
+Memprof2.run_with_report(out: "/path/to/file") do
+  100.times{ "abc" }
+  100.times{ 1.23 + 1 }
+  100.times{ Module.new }
+end
+```
 
 ## ChangeLog
 

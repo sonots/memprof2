@@ -1,3 +1,9 @@
+# 0.1.2 (2018/10/05)
+
+Enhancements:
+
+* Add `Memprof2.run_with_report` (thanks to @takkanm)
+
 # 0.1.1 (2015/10/10)
 
 Changes
