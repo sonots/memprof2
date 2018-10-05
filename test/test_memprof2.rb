@@ -50,4 +50,12 @@ class TestMemprof2 < Test::Unit::TestCase
     assert_match("test/test_memprof2.rb:46:String\n", File.read(opts_bang[:out]))
     assert_match("", File.read(opts[:out]))
   end
+
+  def test_run_with_result
+    opts = {out: "tmp/test_run_with_report.out"}
+    Memprof2.run_with_report(opts) do
+      a = "abc"
+    end
+    assert_match("test/test_memprof2.rb:57:String\n", File.read(opts[:out]))
+  end
 end

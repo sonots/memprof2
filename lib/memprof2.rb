@@ -26,6 +26,14 @@ class Memprof2
       report(opts)
       ObjectSpace.trace_object_allocations_clear
     end
+
+    def run_with_report(opts = {}, &block)
+      start
+      yield
+      report(opts)
+    ensure
+      stop
+    end
   end
 
   def report(opts={})
