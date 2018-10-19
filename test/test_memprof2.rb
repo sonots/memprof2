@@ -12,7 +12,7 @@ class TestMemprof2 < Test::Unit::TestCase
   def test_start_stop
     memprof = Memprof2.new.configure({})
     Memprof2.start
-    a = "abc"
+    _a = "abc"
     12.times{ "abc" }
     results = memprof.collect_info
     Memprof2.stop
@@ -24,7 +24,7 @@ class TestMemprof2 < Test::Unit::TestCase
     memprof = Memprof2.new.configure({})
     results = nil
     Memprof2.run do
-      a = "abc"
+      _a = "abc"
       results = memprof.collect_info
     end
     assert_equal(rvalue_size, find(results, /test_memprof2.rb:27:String/))
@@ -33,7 +33,7 @@ class TestMemprof2 < Test::Unit::TestCase
   def test_report_out
     opts = {out: "tmp/test_report.out"}
     Memprof2.start
-    a = "abc"
+    _a = "abc"
     Memprof2.report(opts)
     Memprof2.stop
     assert_match("test/test_memprof2.rb:36:String\n", File.read(opts[:out]))
@@ -43,7 +43,7 @@ class TestMemprof2 < Test::Unit::TestCase
     opts_bang = {out: "tmp/test_report_bang.out"}
     opts = {out: "tmp/test_report.out"}
     Memprof2.start
-    a = "abc"
+    _a = "abc"
     Memprof2.report!(opts_bang) # clear
     Memprof2.report(opts)
     Memprof2.stop
@@ -54,7 +54,7 @@ class TestMemprof2 < Test::Unit::TestCase
   def test_run_with_result
     opts = {out: "tmp/test_run_with_report.out"}
     Memprof2.run_with_report(opts) do
-      a = "abc"
+      _a = "abc"
     end
     assert_match("test/test_memprof2.rb:57:String\n", File.read(opts[:out]))
   end
