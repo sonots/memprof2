@@ -54,8 +54,16 @@ class Memprof2
     if @ignore = opts[:ignore]
       raise ArgumentError, "`ignore` option must be a Regexp object" unless @ignore.is_a?(Regexp)
     end
-    @out = opts[:out] || "/dev/stdout"
+    @out = opts[:out] || default_output
     self
+  end
+
+  def default_output
+    if RUBY_PLATFORM =~ /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+      "con"
+    else
+      "/dev/stdout"
+    end
   end
 
   def collect_info
